@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wet: 1
+  bm_normal: 1
+  bm_runny: 1
+  bm_hard: 1
+
+two:
+  wet: 1
+  bm_normal: 1
+  bm_runny: 1
+  bm_hard: 1

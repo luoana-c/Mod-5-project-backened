@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  breakfast_items: MyString
+  breakfast_had: MyString
+  am_snack_items: MyString
+  am_snack_had: MyString
+  lunch_items: MyString
+  lunch_had: MyString
+  pm_snack_items: MyString
+  pm_snack_had: MyString
+  dinner_tea_items: MyString
+  dinner_tea_had: MyString
+
+two:
+  breakfast_items: MyString
+  breakfast_had: MyString
+  am_snack_items: MyString
+  am_snack_had: MyString
+  lunch_items: MyString
+  lunch_had: MyString
+  pm_snack_items: MyString
+  pm_snack_had: MyString
+  dinner_tea_items: MyString
+  dinner_tea_had: MyString

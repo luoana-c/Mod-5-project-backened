@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  monday: 2018-10-03 17:36:36
+  tuesday: 2018-10-03 17:36:36
+  wednesday: 2018-10-03 17:36:36
+  thursday: 2018-10-03 17:36:36
+  friday: 2018-10-03 17:36:36
+
+two:
+  monday: 2018-10-03 17:36:36
+  tuesday: 2018-10-03 17:36:36
+  wednesday: 2018-10-03 17:36:36
+  thursday: 2018-10-03 17:36:36
+  friday: 2018-10-03 17:36:36
