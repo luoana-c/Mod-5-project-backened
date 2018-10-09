@@ -6,6 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.time :wednesday
       t.time :thursday
       t.time :friday
+      t.belongs_to :child
 
       t.timestamps
     end

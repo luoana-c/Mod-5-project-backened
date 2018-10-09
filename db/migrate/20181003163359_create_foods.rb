@@ -11,6 +11,7 @@ class CreateFoods < ActiveRecord::Migration[5.2]
       t.string :pm_snack_had
       t.string :dinner_tea_items
       t.string :dinner_tea_had
+      t.belongs_to :day
 
       t.timestamps
     end

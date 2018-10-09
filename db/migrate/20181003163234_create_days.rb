@@ -4,6 +4,7 @@ class CreateDays < ActiveRecord::Migration[5.2]
       t.date :date
       t.time :start_time
       t.time :end_time
+      t.belongs_to :child
 
       t.timestamps
     end

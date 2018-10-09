@@ -5,6 +5,7 @@ class CreateNappyPotties < ActiveRecord::Migration[5.2]
       t.integer :bm_normal
       t.integer :bm_runny
       t.integer :bm_hard
+      t.belongs_to :day
 
       t.timestamps
     end
