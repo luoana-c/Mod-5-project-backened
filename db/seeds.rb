@@ -94,11 +94,10 @@ NappyPotty.create(
     day_id: day.id
 )
 
-Nap.create(
-    start: "11:00",
-    end: "12:25",
-    day_id: day.id
-)
+Nap.create([
+    {start: "11:00", end: "12:25",day_id: day.id},
+    {start: "15:10", end: "16:05",day_id: day.id}       
+])
 
 Note.create(
     daily_note: "Had a good day overall, learned to play with paint",
