@@ -3,7 +3,8 @@ class Api::V1::DaysController < ApplicationController
     def show
 
         kid = Kid.find(params[:id])
-        day = Day.find_by(date: params[:date])
+        day = Day.find_by(date: params[:date], kid_id: kid.id )
+    
         render json: {
             id: day.id, 
             date: day.date,
@@ -24,8 +25,8 @@ class Api::V1::DaysController < ApplicationController
 
     def create
         kid = Kid.find(params[:kid_id])
-        Day.create(kid: kid, date: params[:date])
+        day = Day.find_or_create_by(kid: kid, date: params[:date])
 
-        render json: kid.days
+        render json: day
     end 
 end

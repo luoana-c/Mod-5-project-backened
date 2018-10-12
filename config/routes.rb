@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :users
       resources :kids
       resources :naps
+      resources :days
 
       post '/login', to: 'users#login'
       # this is used for the temporary authentication

@@ -15,6 +15,7 @@ class Api::V1::KidsController < ApplicationController
         kid = Kid.find(params[:id])
         render json: kid.days.map{|day|
             {   
+                id: day.id,
                 date: day.date,
                 naps: day.naps,
                 food: day.daily_food,

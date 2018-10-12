@@ -5,11 +5,11 @@ class Day < ApplicationRecord
     # has_many :nappy_potties
 
     def start_t
-        self.start_time.strftime("%I:%M")
+        self.start_time.strftime("%I:%M") if self.start_time
     end 
 
     def end_t
-        self.end_time.strftime("%I:%M")
+        self.end_time.strftime("%I:%M") if self.start_time
     end 
 
     def daily_note
