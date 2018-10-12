@@ -2,7 +2,7 @@ class Api::V1::DaysController < ApplicationController
 
     def show
 
-        child = Child.find(params[:id])
+        kid = Kid.find(params[:id])
         day = Day.find_by(date: params[:date])
         render json: {
             id: day.id, 
@@ -22,5 +22,10 @@ class Api::V1::DaysController < ApplicationController
         }
     end 
 
+    def create
+        kid = Kid.find(params[:kid_id])
+        Day.create(kid: kid, date: params[:date])
 
+        render json: kid.days
+    end 
 end

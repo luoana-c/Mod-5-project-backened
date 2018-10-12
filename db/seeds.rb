@@ -8,19 +8,22 @@
 
 require 'faker'
   
-children = Child.create([{
+kids = Kid.create([{
         first_name: "Maria",
         last_name: "Smith",
-        date_of_birth: Date.new(2017, 02, 28)
+        date_of_birth: Date.new(2017, 02, 28),
+        gender: "girl"
 }, 
     {
         first_name: "Johnny",
         last_name: "Smith",
-        date_of_birth: Date.new(2015, 10, 03)
+        date_of_birth: Date.new(2015, 10, 03),
+        gender: "boy"
 }, {
         first_name: "Lilly",
         last_name: "Johnson",
-        date_of_birth: Date.new(2014, 01, 21)
+        date_of_birth: Date.new(2014, 01, 21),
+        gender: "girl"
 }])
   
 fatima = User.create(
@@ -55,22 +58,17 @@ phone_number: "0748261080",
 address: Faker::Address.full_address
 }])
 
-fatimas_children = UserChild.create([{user_id: fatima.id, child_id: children.first.id},
-{user_id: fatima.id, child_id: children.second.id},
-{user_id: fatima.id, child_id: children.last.id} ])
+fatimas_kids = UserKid.create([{user_id: fatima.id, kid_id: kids.first.id},
+{user_id: fatima.id, kid_id: kids.second.id},
+{user_id: fatima.id, kid_id: kids.last.id} ])
 
-children_parents = UserChild.create([{user_id: parents.first.id, child_id:children.first.id}, 
-{user_id: parents.first.id, child_id:children.second.id},
-{user_id: parents.last.id, child_id:children.first.id},
-{user_id: parents.last.id, child_id:children.second.id}, 
-{user_id: parents.second.id, child_id:children.last.id}])
+kids_parents = UserKid.create([{user_id: parents.first.id, kid_id:kids.first.id}, 
+{user_id: parents.first.id, kid_id:kids.second.id},
+{user_id: parents.last.id, kid_id:kids.first.id},
+{user_id: parents.last.id, kid_id:kids.second.id}, 
+{user_id: parents.second.id, kid_id:kids.last.id}])
 
-day = Day.create(
-      date: "2018-09-12",
-      start_time: "08:00",
-      end_time: "18:00",
-      child_id: children.first.id
-)
+day = Day.create(date: "2018-09-12", start_time: "08:00", end_time: "18:00", kid_id: kids.first.id)
 
 Food.create(  
        breakfast_items: "toast, butter",

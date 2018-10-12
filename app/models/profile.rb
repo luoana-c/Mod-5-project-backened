@@ -1,3 +1,3 @@
 class Profile < ApplicationRecord
-    belongs_to :child
+    belongs_to :kid
 end

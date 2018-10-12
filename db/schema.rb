@@ -10,27 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_03_163655) do
+ActiveRecord::Schema.define(version: 2018_10_11_111439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "children", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.date "date_of_birth"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "days", force: :cascade do |t|
     t.date "date"
     t.time "start_time"
     t.time "end_time"
-    t.bigint "child_id"
+    t.bigint "kid_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_days_on_child_id"
+    t.index ["kid_id"], name: "index_days_on_kid_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -48,6 +40,15 @@ ActiveRecord::Schema.define(version: 2018_10_03_163655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_foods_on_day_id"
+  end
+
+  create_table "kids", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "nappy_potties", force: :cascade do |t|
@@ -81,10 +82,10 @@ ActiveRecord::Schema.define(version: 2018_10_03_163655) do
   create_table "profiles", force: :cascade do |t|
     t.string "allergies"
     t.string "medications"
-    t.bigint "child_id"
+    t.bigint "kid_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_profiles_on_child_id"
+    t.index ["kid_id"], name: "index_profiles_on_kid_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -93,19 +94,19 @@ ActiveRecord::Schema.define(version: 2018_10_03_163655) do
     t.time "wednesday"
     t.time "thursday"
     t.time "friday"
-    t.bigint "child_id"
+    t.bigint "kid_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_schedules_on_child_id"
+    t.index ["kid_id"], name: "index_schedules_on_kid_id"
   end
 
-  create_table "user_children", force: :cascade do |t|
+  create_table "user_kids", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "child_id"
+    t.bigint "kid_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_user_children_on_child_id"
-    t.index ["user_id"], name: "index_user_children_on_user_id"
+    t.index ["kid_id"], name: "index_user_kids_on_kid_id"
+    t.index ["user_id"], name: "index_user_kids_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
