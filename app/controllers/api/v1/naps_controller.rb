@@ -1,12 +1,13 @@
 class Api::V1::NapsController < ApplicationController
 
     def show
-        # byebug
+        # TODO: might not need a show method for naps, as we only do posts and patches
         nap = Nap.find(params[:id])
         render json: nap
     end
 
     def index
+         # TODO: might not need a index method for naps, as we only do posts and patches
     end
 
     def create
