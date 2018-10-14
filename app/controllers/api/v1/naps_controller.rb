@@ -14,7 +14,7 @@ class Api::V1::NapsController < ApplicationController
         day = Day.find(params[:day_id])
         # what happens if I click again on start nap after the time was changed?
         # as I am finding or creating by start as well...
-        nap = Nap.find_or_create_by(day: day, start: params[:start])
+        nap = Nap.create(day: day)
     
         render json: nap
     end 
@@ -31,7 +31,7 @@ class Api::V1::NapsController < ApplicationController
     end 
 
     def destroy
-        nap = Nap.find(params[:nap_id])
+        nap = Nap.find(params[:id])
         nap.destroy
         # render json: do I need one?
     end 
