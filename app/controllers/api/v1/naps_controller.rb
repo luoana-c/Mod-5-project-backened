@@ -33,7 +33,7 @@ class Api::V1::NapsController < ApplicationController
     def destroy
         nap = Nap.find(params[:id])
         nap.destroy
-        # render json: do I need one?
+        render json: {message: "nap was deleted"}
     end 
 
     # def nap_params(*args)

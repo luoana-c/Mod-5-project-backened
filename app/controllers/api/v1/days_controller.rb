@@ -15,8 +15,8 @@ class Api::V1::DaysController < ApplicationController
             naps: day.naps.map{|nap| {
                 id: nap.id,
                 day_id: nap.day_id,
-                start: nap.nap_start, 
-                end: nap.nap_end,
+                start: nap.start, 
+                end: nap.end,
                 duration: nap.nap_duration
             }},
             note: day.daily_note
