@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :kids
       resources :naps
       resources :days
+      resources :nappy_potties
+      resources :foods
+      resources :notes
 
       post '/login', to: 'users#login'
       # this is used for the temporary authentication
