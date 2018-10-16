@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :foods
       resources :notes
 
-      post '/login', to: 'users#login'
+      # post '/login', to: 'users#login'
       # this is used for the temporary authentication
 
       post '/signin', to: 'users#signin'

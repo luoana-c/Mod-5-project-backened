@@ -24,6 +24,19 @@ class Api::V1::KidsController < ApplicationController
 
             }
     }
+    end
     
+    def create
+        childminder = User.find(params[:user_id])
+        kid = Kid.create(first_name: params[:first_name], last_name: params[:last_name])
+        UserKid.create(user: childminder, kid: kid)
+        render json: kid
+    end 
+
+    def update
+    end 
+
+    def destroy 
+        # TODO: careful with deleting children; extra MVP: make them inactive instead
     end 
 end
