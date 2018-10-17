@@ -4,8 +4,9 @@ class Kid < ApplicationRecord
     has_many :days
 
     def kid_parents
+
         kid_all_users = self.user_kids.map{|user_kid| User.all.find(user_kid.user_id)}
-        kid_all_users.select{|user| user.childminder == false}
+        parents = kid_all_users.select{|user| user.childminder == false} ? kid_all_users.select{|user| user.childminder == false} : []
     end 
 
     def age_years

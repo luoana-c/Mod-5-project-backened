@@ -37,7 +37,8 @@ class Api::V1::KidsController < ApplicationController
             last_name: kid.last_name, 
             date_of_birth: kid.date_of_birth,
             age_years: kid.age_years,
-            age_months: kid.age_months
+            age_months: kid.age_months,
+            parents: kid.kid_parents
         }
     end 
 
@@ -52,7 +53,8 @@ class Api::V1::KidsController < ApplicationController
             last_name: kid.last_name, 
             date_of_birth: kid.date_of_birth,
             age_years: kid.age_years,
-            age_months: kid.age_months
+            age_months: kid.age_months,
+            parents: kid.kid_parents
         }
         else
             render json: kid.errors 
@@ -65,10 +67,28 @@ class Api::V1::KidsController < ApplicationController
         parent = User.new(email: params[:email], password: params[:password], childminder: false)
         if user.save
             UserKid.create(kid: kid, user: parent)
-            render json: kid.kid_parents
+            render json: {
+                id: kid.id, 
+                gender: kid.gender,
+                first_name: kid.first_name, 
+                last_name: kid.last_name, 
+                date_of_birth: kid.date_of_birth,
+                age_years: kid.age_years,
+                age_months: kid.age_months,
+                parents: kid.kid_parents
+            }
         else
             render json: user.errors
         end
+    end 
+
+    def delete_parent
+        kid = Kid.find(params[:id])
+        parent = User.find_by(email: params[:email])
+        user_kid = UserKid.find_by(kid: kid, user: parent)
+        user_kid.destroy
+        parent.destroy
+        render json: {message: "nap was deleted"}
     end 
 
     def destroy 

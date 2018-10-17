@@ -87,7 +87,8 @@ class Api::V1::UsersController < ApplicationController
                         last_name: kid.last_name, 
                         date_of_birth: kid.date_of_birth,
                         age_years: kid.age_years,
-                        age_months: kid.age_months
+                        age_months: kid.age_months,
+                        parents: kid.kid_parents
                     }
               }
             }

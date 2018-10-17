@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       
       get '/kids/:id/days', to: 'kids#days'
       post '/kids/:id/parents', to: 'kids#add_parent'
+      delete '/kids/:id/parents/:email', to: 'kids#delete_parent'
       post '/kids/:id/days', to: 'days#create'
       get '/kids/:id/days/:date', to: 'days#show'
 
