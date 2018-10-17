@@ -10,17 +10,25 @@ class Kid < ApplicationRecord
 
     def age_years
         now = Time.now.utc.to_date
-        dob = self.date_of_birth
-        now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+        if (self.date_of_birth)
+            dob = self.date_of_birth
+            now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+        else
+            return ""
+        end
     end
 
     def age_months
         now = Time.now.utc.to_date
-        dob = self.date_of_birth
-        if (now.month >= dob.month) 
-            now.month - dob.month - ((now.day >= dob.day) ? 0 : 1)
-        elsif (now.month < dob.month)
-            12 - dob.month + ((now.day < dob.day) ? 0 : 1)
-        end 
+        if (self.date_of_birth)
+            dob = self.date_of_birth
+            if (now.month >= dob.month) 
+                now.month - dob.month - ((now.day >= dob.day) ? 0 : 1)
+            elsif (now.month < dob.month)
+                12 - dob.month + ((now.day < dob.day) ? 0 : 1)
+            end 
+        else
+            return ""
+        end
     end 
 end

@@ -14,11 +14,13 @@ Rails.application.routes.draw do
 
       post '/signin', to: 'users#signin'
       get '/validate', to: 'users#validate'
+      post '/signup', to: 'users#signup'
       # these are used for the jwt authentication
       
-      get '/kids/:id/days', to: "kids#days"
+      get '/kids/:id/days', to: 'kids#days'
+      post '/kids/:id/parents', to: 'kids#add_parent'
       post '/kids/:id/days', to: 'days#create'
-      get '/kids/:id/days/:date', to: "days#show"
+      get '/kids/:id/days/:date', to: 'days#show'
 
     
     end
