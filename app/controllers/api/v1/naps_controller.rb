@@ -16,6 +16,10 @@ class Api::V1::NapsController < ApplicationController
         # as I am finding or creating by start as well...
         nap = Nap.create(day: day)
     
+        Pusher.trigger('my-channel', 'my-event', {
+            message: nap.to_json
+        })
+
         render json: nap
     end 
 
@@ -27,12 +31,19 @@ class Api::V1::NapsController < ApplicationController
         elsif params[:end]
             nap.update(end: params[:end])
         end
+        Pusher.trigger('my-channel', 'my-event', {
+            message: nap.to_json
+        })
         render json: nap
     end 
 
     def destroy
         nap = Nap.find(params[:id])
+        Pusher.trigger('my-channel', 'delete-nap', {
+            message: nap.to_json
+        })
         nap.destroy
+        
         render json: {message: "nap was deleted"}
     end 
 
