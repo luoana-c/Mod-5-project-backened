@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
     def signin
         user = User.find_by(email: params[:email])
         if user && user.authenticate(params[:password])
-            render json: {email: user.email, token: issue_token({id: user.id}), id: user.id, childminder: user.childminder}
+            render json: {email: user.email, token: issue_token({id: user.id}), id: user.id, childminder: user.childminder, name: user.name}
         else 
             render json: {error: 'Invalid email or password.'}, status: 400
         end
@@ -54,9 +54,9 @@ class Api::V1::UsersController < ApplicationController
     # end 
 
     def signup
-        user = User.new(email: params[:email], password: params[:password])
+        user = User.new(email: params[:email], password: params[:password], name: params[:name], address: params[:address], phone_number: params[:phone_number])
         if user.save
-            render json: {email: user.email, token: issue_token({id: user.id}), id: user.id, childminder: user.childminder}, status: :created
+            render json: {email: user.email, token: issue_token({id: user.id}), id: user.id, childminder: user.childminder, name: user.name}, status: :created
         else
             render json: {error: 'Failed to create user.'}, status: :not_acceptable
         end 
@@ -88,7 +88,13 @@ class Api::V1::UsersController < ApplicationController
                         date_of_birth: kid.date_of_birth,
                         age_years: kid.age_years,
                         age_months: kid.age_months,
-                        parents: kid.kid_parents
+                        parents: kid.kid_parents.map{|parent| {
+                            id: parent.id,
+                            name: parent.name,
+                            phone_number: parent.phone_number, 
+                            address: parent.address,
+                            email: parent.email
+                        }}
                     }
               }
             }
@@ -101,7 +107,7 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:name, :email, :childminder, :phone, :address)
+        params.permit(:name, :email, :phone, :address)
         # permit all params?
     end 
 end

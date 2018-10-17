@@ -5,7 +5,13 @@ class Api::V1::KidsController < ApplicationController
             kid_info: kid,
             age_years: kid.age_years,
             age_months: kid.age_months,
-            parents: kid.kid_parents
+            parents: kid.kid_parents.map{|parent| {
+                id: parent.id,
+                name: parent.name,
+                phone_number: parent.phone_number, 
+                address: parent.address,
+                email: parent.email
+            }}
         }
         # render json: kid
         
@@ -38,7 +44,13 @@ class Api::V1::KidsController < ApplicationController
             date_of_birth: kid.date_of_birth,
             age_years: kid.age_years,
             age_months: kid.age_months,
-            parents: kid.kid_parents
+            parents: kid.kid_parents.map{|parent| {
+                id: parent.id,
+                name: parent.name,
+                phone_number: parent.phone_number, 
+                address: parent.address,
+                email: parent.email
+            }}
         }
     end 
 
@@ -54,7 +66,13 @@ class Api::V1::KidsController < ApplicationController
             date_of_birth: kid.date_of_birth,
             age_years: kid.age_years,
             age_months: kid.age_months,
-            parents: kid.kid_parents
+            parents: kid.kid_parents.map{|parent| {
+                id: parent.id,
+                name: parent.name,
+                phone_number: parent.phone_number, 
+                address: parent.address,
+                email: parent.email
+            }}
         }
         else
             render json: kid.errors 
@@ -64,8 +82,8 @@ class Api::V1::KidsController < ApplicationController
 
     def add_parent
         kid = Kid.find(params[:id])
-        parent = User.new(email: params[:email], password: params[:password], childminder: false)
-        if user.save
+        parent = User.new(email: params[:email], password: params[:password], childminder: false, name: params[:name], phone_number: params[:phone_number], address: params[:address])
+        if parent.save
             UserKid.create(kid: kid, user: parent)
             render json: {
                 id: kid.id, 
@@ -75,10 +93,16 @@ class Api::V1::KidsController < ApplicationController
                 date_of_birth: kid.date_of_birth,
                 age_years: kid.age_years,
                 age_months: kid.age_months,
-                parents: kid.kid_parents
+                parents: kid.kid_parents.map{|parent| {
+                id: parent.id,
+                name: parent.name,
+                phone_number: parent.phone_number, 
+                address: parent.address,
+                email: parent.email
+            }}
             }
         else
-            render json: user.errors
+            render json: parent.errors
         end
     end 
 
