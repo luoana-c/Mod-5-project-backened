@@ -2,7 +2,7 @@ class Api::V1::NappyPottiesController < ApplicationController
     def create 
         day = Day.find(params[:day_id])
         nappy_potty = NappyPotty.create(day: day)
-        Pusher.trigger('my-channel', 'my-event', {
+        Pusher.trigger('my-channel', 'nappy-create', {
             message: {
                 id: day.id, 
                 date: day.date,
@@ -50,7 +50,7 @@ class Api::V1::NappyPottiesController < ApplicationController
         elsif params[:bm_hard]
             nappy_potty.update(bm_hard: params[:bm_hard])
         end
-        Pusher.trigger('my-channel', 'my-event', {
+        Pusher.trigger('my-channel', 'nappy-change', {
             message: {
                 id: day.id, 
                 date: day.date,

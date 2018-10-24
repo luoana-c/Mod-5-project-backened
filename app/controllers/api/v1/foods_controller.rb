@@ -2,7 +2,7 @@ class Api::V1::FoodsController < ApplicationController
     def create
         day = Day.find(params[:day_id])
         food = Food.create(day: day)
-        Pusher.trigger('my-channel', 'my-event', {
+        Pusher.trigger('my-channel', 'create-food', {
             message: {
                 id: day.id, 
                 date: day.date,
@@ -28,15 +28,23 @@ class Api::V1::FoodsController < ApplicationController
             food: day.daily_food,
             nappy_potty: day.daily_nappy_potty,
             naps: day.naps.map{|nap| {
-                id: nap.id,
-                day_id: nap.day_id,
-                start: nap.start, 
-                end: nap.end,
-                duration: nap.nap_duration
-            }},
+                    id: nap.id,
+                    day_id: nap.day_id,
+                    start: nap.start, 
+                    end: nap.end,
+                    duration: nap.nap_duration
+                }},
             note: day.daily_note
         }
     end 
+
+    # naps: day.naps.map{|nap| {
+    #             id: nap.id,
+    #             day_id: nap.day_id,
+    #             start: nap.start, 
+    #             end: nap.end,
+    #             duration: nap.nap_duration
+    #         }},
 
     def update 
         food = Food.find(params[:id])
@@ -63,7 +71,7 @@ class Api::V1::FoodsController < ApplicationController
         elsif params[:dinner_tea_had]
             food.update(dinner_tea_had: params[:dinner_tea_had])
         end
-        Pusher.trigger('my-channel', 'my-event', {
+        Pusher.trigger('my-channel', 'change-food', {
             message: {
                 id: day.id, 
                 date: day.date,
@@ -89,12 +97,12 @@ class Api::V1::FoodsController < ApplicationController
             food: day.daily_food,
             nappy_potty: day.daily_nappy_potty,
             naps: day.naps.map{|nap| {
-                id: nap.id,
-                day_id: nap.day_id,
-                start: nap.start, 
-                end: nap.end,
-                duration: nap.nap_duration
-            }},
+                    id: nap.id,
+                    day_id: nap.day_id,
+                    start: nap.start, 
+                    end: nap.end,
+                    duration: nap.nap_duration
+                }},
             note: day.daily_note
         }
     end 

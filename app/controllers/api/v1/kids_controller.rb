@@ -105,6 +105,8 @@ class Api::V1::KidsController < ApplicationController
             render json: parent.errors
         end
     end 
+    
+    # TODO: need to create possibility to select from existing parents to add to several kids (front and back)
 
     def delete_parent
         kid = Kid.find(params[:id])
